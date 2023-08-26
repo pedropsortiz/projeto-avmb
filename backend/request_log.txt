@@ -14,3 +14,8 @@
 2023-08-26T22:26:17.735Z - IP: ::1 - Method: PUT - URL: /produtos/7
 2023-08-26T22:26:22.334Z - IP: ::1 - Method: GET - URL: /produtos/7
 2023-08-26T22:26:43.822Z - IP: ::1 - Method: POST - URL: /produtos
+2023-08-26T22:38:46.584Z - IP: ::1 - Method: GET - URL: /produtos
+2023-08-26T22:38:50.633Z - IP: ::1 - Method: GET - URL: /produtos/1
+2023-08-26T22:39:12.379Z - IP: ::1 - Method: PUT - URL: /produtos/1
+2023-08-26T22:39:16.200Z - IP: ::1 - Method: GET - URL: /produtos/1
+2023-08-26T22:39:22.866Z - IP: ::1 - Method: POST - URL: /produtos/
