@@ -1,0 +1,6 @@
+2023-08-26T22:06:13.842Z - IP: ::1 - Method: GET - URL: /produtos/
+2023-08-26T22:06:33.187Z - IP: ::1 - Method: GET - URL: /produtos/
+2023-08-26T22:06:42.721Z - IP: ::1 - Method: GET - URL: /produtos/
+2023-08-26T22:06:48.047Z - IP: ::1 - Method: GET - URL: /usuarios/
+2023-08-26T22:07:06.719Z - IP: ::1 - Method: GET - URL: /usuarios/
+2023-08-26T22:07:08.094Z - IP: ::1 - Method: GET - URL: /usuarios/
