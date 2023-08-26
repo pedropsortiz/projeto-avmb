@@ -8,7 +8,7 @@ const port = 8080;
 // Configuração do rate limiting: 2 requisições por minuto
 const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minuto
-  max: 2, // 2 requisições por minuto
+  max: 50, 
   message: "Limite de requisições excedido. Por favor, tente novamente mais tarde."
 });
 

@@ -50,7 +50,7 @@ class ${modelName}Controller {
       try {
         const ${modelName} = await models.${modelName}.findByPk(groupId);
         if (!${modelName}) {
-          return res.status(404).json({ message: "Erro 4040. Requisição não encontrada" });
+          return res.status(404).json({ message: "Erro 404. Requisição não encontrada" });
         }
         return res.status(200).json(${modelName});
       } catch (error) {
@@ -65,7 +65,7 @@ class ${modelName}Controller {
       try {
         const ${modelName} = await models.${modelName}.findByPk(groupId);
         if (!${modelName}) {
-          return res.status(404).json({ message: "Erro 4040. Requisição não encontrada" });
+          return res.status(404).json({ message: "Erro 404. Requisição não encontrada" });
         }
         
         await ${modelName}.update(updatedData);
