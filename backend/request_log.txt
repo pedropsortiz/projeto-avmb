@@ -4,3 +4,13 @@
 2023-08-26T22:06:48.047Z - IP: ::1 - Method: GET - URL: /usuarios/
 2023-08-26T22:07:06.719Z - IP: ::1 - Method: GET - URL: /usuarios/
 2023-08-26T22:07:08.094Z - IP: ::1 - Method: GET - URL: /usuarios/
+2023-08-26T22:24:44.637Z - IP: ::1 - Method: GET - URL: /usuarios/
+2023-08-26T22:24:48.477Z - IP: ::1 - Method: GET - URL: /usuarios/2
+2023-08-26T22:25:06.337Z - IP: ::1 - Method: PUT - URL: /usuarios/2
+2023-08-26T22:25:09.784Z - IP: ::1 - Method: PUT - URL: /usuarios/
+2023-08-26T22:25:14.033Z - IP: ::1 - Method: GET - URL: /usuarios/
+2023-08-26T22:25:33.491Z - IP: ::1 - Method: GET - URL: /produtos/
+2023-08-26T22:25:52.954Z - IP: ::1 - Method: PUT - URL: /produtos/7
+2023-08-26T22:26:17.735Z - IP: ::1 - Method: PUT - URL: /produtos/7
+2023-08-26T22:26:22.334Z - IP: ::1 - Method: GET - URL: /produtos/7
+2023-08-26T22:26:43.822Z - IP: ::1 - Method: POST - URL: /produtos
