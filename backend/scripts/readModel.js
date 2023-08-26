@@ -17,57 +17,29 @@ fs.readFile(modelFilePath, 'utf-8', (err, data) => {
   const controllerContent = `
 ${importStatement}
 
-const getAll${tableName} = async (req, res) => {
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('VERMELHO', 'usuario_vermelho', 'asfg12@3', {
+  host: '172.27.32.199',
+  dialect: 'postgres', // Substitua pelo dialeto do seu banco de dados
+});
+
+var initModels = require("../models/init-models.js");
+
+var models = initModels(sequelize)
+
+class ${tableName}Controller {
+  static async pegaTodasAsP${tableName}(req, res) {
     try {
-        const ${tableName.toLowerCase()} = await ${tableName}.findAll({});
-        res.json(${tableName.toLowerCase()});
+     
+      const todasAs${tableName} = await models.pedidos.findAll({where: {id_cliente: 2}});
+      return res.status(200).json(todasAs${tableName});
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erro interno" });
+      return res.status(500).json(error.message);
     }
+  }
 }
 
-const get${tableName}ById = async (req, res) => {
-    try {
-        const ${tableName.toLowerCase()} = await ${tableName}.findByPk(req.params.id);
-        res.json(${tableName.toLowerCase()});
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: error });
-    }
-}
-
-const create${tableName} = async (req, res) => {
-    try {
-        const new${tableName} = await ${tableName}.create(req.body);
-        res.json(new${tableName});
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erro ao criar ${tableName.toLowerCase()}" });
-    }
-}
-
-const update${tableName} = async (req, res) => {
-    try {
-        const ${tableName.toLowerCase()} = await ${tableName}.findByPk(req.params.id);
-        if (!${tableName.toLowerCase()}) {
-            return res.status(404).json({ message: "${tableName.toLowerCase()} não encontrado" });
-        }
-        
-        await ${tableName.toLowerCase()}.update(req.body);
-        res.json({ message: "${tableName.toLowerCase()} atualizado com sucesso" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erro ao atualizar ${tableName.toLowerCase()}" });
-    }
-}
-
-module.exports = {
-    getAll${tableName},
-    get${tableName}ById,
-    create${tableName},
-    update${tableName}
-}
+module.exports = ${tableName}aController;
 `;
 
   const controllerFileName = `${tableName}Controller.js`;
