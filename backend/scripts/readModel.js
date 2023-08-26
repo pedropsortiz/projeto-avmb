@@ -12,12 +12,7 @@ const sequelize = new Sequelize('VERMELHO', 'usuario_vermelho', 'asfg12@3', {
 var initModels = require("../models/init-models.js");
 var models = initModels(sequelize);
 
-
-
 console.log(models)
-
-
-
 
 Object.keys(models).forEach(model => {
   console.log(model)
