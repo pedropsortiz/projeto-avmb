@@ -1,4 +1,4 @@
-const database = require("../models");
+/*const database = require("../models");
 
 class PessoaController {
   static async pegaTodasAsPessoas(req, res) {
@@ -11,4 +11,4 @@ class PessoaController {
   }
 }
 
-module.exports = PessoaController;
+module.exports = PessoaController;*/
