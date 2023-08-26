@@ -3,6 +3,6 @@ const PessoaController = require("../controllers/ClientesController.js");
 
 const router = Router();
 
-router.get("/pessoas", PessoaController.pegaTodasAsPessoas);
+router.get("/pessoas", PessoaController.pegaTodosClientes);
 
 module.exports = router;

@@ -8,15 +8,15 @@ const sequelize = new Sequelize('VERMELHO', 'usuario_vermelho', 'asfg12@3', {
 var initModels = require("../models/init-models.js");
 var models = initModels(sequelize);
 
-class clientesController {
-  static async findAllclientess(req, res) {
+class historico_estoqueController {
+  static async findAllhistorico_estoques(req, res) {
     try {
-      const allclientess = await models.clientes.findAll();
-      return res.status(200).json(allclientess);
+      const allhistorico_estoques = await models.historico_estoque.findAll();
+      return res.status(200).json(allhistorico_estoques);
     } catch (error) {
       return res.status(500).json(error.message);
     }
   }
 }
 
-module.exports = clientesController;
+module.exports = historico_estoqueController;

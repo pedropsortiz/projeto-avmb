@@ -1,4 +1,6 @@
 
+const teste = require('../models/teste.js');
+
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('VERMELHO', 'usuario_vermelho', 'asfg12@3', {
   host: '172.27.32.199',
@@ -6,17 +8,19 @@ const sequelize = new Sequelize('VERMELHO', 'usuario_vermelho', 'asfg12@3', {
 });
 
 var initModels = require("../models/init-models.js");
-var models = initModels(sequelize);
 
-class clientesController {
-  static async findAllclientess(req, res) {
+var models = initModels(sequelize)
+
+class testeController {
+  static async pegaTodasAsPteste(req, res) {
     try {
-      const allclientess = await models.clientes.findAll();
-      return res.status(200).json(allclientess);
+     
+      const todasAsteste = await models.pedidos.findAll({where: {id_cliente: 2}});
+      return res.status(200).json(todasAsteste);
     } catch (error) {
       return res.status(500).json(error.message);
     }
   }
 }
 
-module.exports = clientesController;
+module.exports = testeaController;
