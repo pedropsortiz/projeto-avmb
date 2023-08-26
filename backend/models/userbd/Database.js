@@ -23,6 +23,6 @@ const databaseSchema = new mongoose.Schema({
     }
 });
 
-const Database = mongoose.model('Database', userSchema);
+const Database = mongoose.model('Database', databaseSchema);
 
 module.exports = Database;

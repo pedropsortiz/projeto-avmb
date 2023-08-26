@@ -12,6 +12,8 @@ import PerfilPage from "./pages/PerfilPage";
 import CriarBanco from "./pages/CriarBancoPage";
 import TabelasPage from "./pages/TabelasPage";
 
+import HomeScreen from './screens/HomeScreen';
+
 function App() {
   return (
     <BrowserRouter>

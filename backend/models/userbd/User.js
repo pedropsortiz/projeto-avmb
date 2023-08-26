@@ -21,8 +21,8 @@ const userSchema = new mongoose.Schema({
     },
     permission: {
         type: String,
-        enum: ['user', 'admin'],
-        default: 'user'
+        enum: ['adm', 'usr'],
+        default: 'usr'
     }
 });
 
