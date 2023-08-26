@@ -21,9 +21,9 @@ class produtosController {
       const groupId = req.params.id;
   
       try {
-        const produtos = await models.grupos_permissoes.findByPk(groupId);
+        const produtos = await models.produtos.findByPk(groupId);
         if (!produtos) {
-          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+          return res.status(404).json({ message: "Erro 4040. Requisição não encontrada" });
         }
         return res.status(200).json(produtos);
       } catch (error) {
@@ -36,14 +36,14 @@ class produtosController {
       const updatedData = req.body;
   
       try {
-        const produtos = await models.grupos_permissoes.findByPk(groupId);
+        const produtos = await models.produtos.findByPk(groupId);
         if (!produtos) {
-          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+          return res.status(404).json({ message: "Erro 4040. Requisição não encontrada" });
         }
         
         await produtos.update(updatedData);
   
-        return res.status(200).json({ message: "Grupo de permissões atualizado com sucesso." });
+        return res.status(200).json({ message: "Requisição atualizada com sucesso." });
       } catch (error) {
         return res.status(500).json(error.message);
       }
@@ -53,7 +53,7 @@ class produtosController {
       const newprodutos = req.body;
   
       try {
-        const createdprodutos = await models.grupos_permissoes.create(newprodutos);
+        const createdprodutos = await models.produtos.create(newprodutos);
   
         return res.status(201).json(createdprodutos);
       } catch (error) {

@@ -21,9 +21,9 @@ class usuariosController {
       const groupId = req.params.id;
   
       try {
-        const usuarios = await models.grupos_permissoes.findByPk(groupId);
+        const usuarios = await models.usuarios.findByPk(groupId);
         if (!usuarios) {
-          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+          return res.status(404).json({ message: "Erro 4040. Requisição não encontrada" });
         }
         return res.status(200).json(usuarios);
       } catch (error) {
@@ -36,14 +36,14 @@ class usuariosController {
       const updatedData = req.body;
   
       try {
-        const usuarios = await models.grupos_permissoes.findByPk(groupId);
+        const usuarios = await models.usuarios.findByPk(groupId);
         if (!usuarios) {
-          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+          return res.status(404).json({ message: "Erro 4040. Requisição não encontrada" });
         }
         
         await usuarios.update(updatedData);
   
-        return res.status(200).json({ message: "Grupo de permissões atualizado com sucesso." });
+        return res.status(200).json({ message: "Requisição atualizada com sucesso." });
       } catch (error) {
         return res.status(500).json(error.message);
       }
@@ -53,7 +53,7 @@ class usuariosController {
       const newusuarios = req.body;
   
       try {
-        const createdusuarios = await models.grupos_permissoes.create(newusuarios);
+        const createdusuarios = await models.usuarios.create(newusuarios);
   
         return res.status(201).json(createdusuarios);
       } catch (error) {
