@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const outputDirectory = '.\\controllers\\'; // Diretório de saída
+const outputDirectory = '.\\backend\\controllers\\'; // Diretório de saída
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('VERMELHO', 'usuario_vermelho', 'asfg12@3', {
@@ -36,6 +36,49 @@ class ${modelName}Controller {
       return res.status(500).json(error.message);
     }
   }
+    static async findOne${modelName}(req, res) {
+      const groupId = req.params.id;
+  
+      try {
+        const ${modelName} = await models.grupos_permissoes.findByPk(groupId);
+        if (!${modelName}) {
+          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+        }
+        return res.status(200).json(${modelName});
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
+  
+    static async update${modelName}(req, res) {
+      const groupId = req.params.id;
+      const updatedData = req.body;
+  
+      try {
+        const ${modelName} = await models.grupos_permissoes.findByPk(groupId);
+        if (!${modelName}) {
+          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+        }
+        
+        await ${modelName}.update(updatedData);
+  
+        return res.status(200).json({ message: "Grupo de permissões atualizado com sucesso." });
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
+  
+    static async insert${modelName}(req, res) {
+      const new${modelName} = req.body;
+  
+      try {
+        const created${modelName} = await models.grupos_permissoes.create(new${modelName});
+  
+        return res.status(201).json(created${modelName});
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
 }
 
 module.exports = ${modelName}Controller;

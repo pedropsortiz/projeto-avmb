@@ -1,36 +1,51 @@
 const fs = require('fs');
 const path = require('path');
 
-// Leitura do controller
-const controllerFilePath = path.join('./controllers/comprasController.js');
-const controllerContent = fs.readFileSync(controllerFilePath, 'utf-8');
+const outputDirectory = '.\\backend\\routes\\'; // Diretório de saída
 
-// Extrair nome da classe e método do controller
-const classNameMatch = controllerContent.match(/class (\w+)/);
-const methodNameMatch = controllerContent.match(/static async (\w+)\(/);
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('VERMELHO', 'usuario_vermelho', 'asfg12@3', {
+  host: '172.27.32.199',
+  dialect: 'postgres', // Substitua pelo dialeto do seu banco de dados
+});
 
-if (!classNameMatch || !methodNameMatch) {
-  console.error('Não foi possível extrair o nome da classe ou do método do controller.');
-  process.exit(1);
-}
+var initModels = require("../models/init-models.js");
+var models = initModels(sequelize);
 
-const className = classNameMatch[1];
-const methodName = methodNameMatch[1];
+Object.keys(models).forEach(async (model) => {
+  const modelName = model;
+  const routeContent = `
+    const { Router } = require("express");
+    const ${modelName}Controller = require("../controllers/${modelName}Controller.js");
 
-// Gerar o conteúdo do arquivo de rotas personalizado
-const routeContent = `
-const { Router } = require("express");
-const ${className} = require("../controllers/${className}.js");
+    const router = Router();
 
-const router = Router();
+    router.get("/${modelName}", ${modelName}Controller.findAll${modelName}s);
+    router.get("/${modelName}/:id", ${modelName}Controller.findOne${modelName});
+    router.put("/${modelName}/:id", ${modelName}Controller.update${modelName});
+    router.post("/${modelName}", ${modelName}Controller.insert${modelName});
 
-router.get("/pessoas", ${className}.${methodName});
+    module.exports = router;
+  `;
 
-module.exports = router;
-`;
+  const filePath = path.join(__dirname, '..', 'controllers', `${modelName}Controller.js`);
+  const newFileName = `${modelName}routes.js`;
+  const newFilePath = path.join(outputDirectory, newFileName);
 
-// Escrever o conteúdo no arquivo de rotas
-const routeFilePath = path.join(__dirname, 'routes.js');
-fs.writeFileSync(routeFilePath, routeContent, 'utf-8');
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Erro ao ler o arquivo de entrada:', err);
+      return;
+    }
 
-console.log('Arquivo de rotas personalizado foi gerado com sucesso!');
+    const newContent = data.replace('Controller.js', '');
+    
+    fs.writeFile(newFilePath,  routeContent, 'utf8', (writeErr) => {
+      if (writeErr) {
+        console.error('Erro ao criar o novo arquivo de saída:', writeErr);
+        return;
+      }
+      console.log(`Arquivo de saída criado com sucesso em ${newFilePath}`);
+    });
+  });
+});

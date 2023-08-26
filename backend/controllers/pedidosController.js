@@ -17,6 +17,49 @@ class pedidosController {
       return res.status(500).json(error.message);
     }
   }
+    static async findOnepedidos(req, res) {
+      const groupId = req.params.id;
+  
+      try {
+        const pedidos = await models.grupos_permissoes.findByPk(groupId);
+        if (!pedidos) {
+          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+        }
+        return res.status(200).json(pedidos);
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
+  
+    static async updatepedidos(req, res) {
+      const groupId = req.params.id;
+      const updatedData = req.body;
+  
+      try {
+        const pedidos = await models.grupos_permissoes.findByPk(groupId);
+        if (!pedidos) {
+          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+        }
+        
+        await pedidos.update(updatedData);
+  
+        return res.status(200).json({ message: "Grupo de permissões atualizado com sucesso." });
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
+  
+    static async insertpedidos(req, res) {
+      const newpedidos = req.body;
+  
+      try {
+        const createdpedidos = await models.grupos_permissoes.create(newpedidos);
+  
+        return res.status(201).json(createdpedidos);
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
 }
 
 module.exports = pedidosController;

@@ -17,6 +17,49 @@ class usuariosController {
       return res.status(500).json(error.message);
     }
   }
+    static async findOneusuarios(req, res) {
+      const groupId = req.params.id;
+  
+      try {
+        const usuarios = await models.grupos_permissoes.findByPk(groupId);
+        if (!usuarios) {
+          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+        }
+        return res.status(200).json(usuarios);
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
+  
+    static async updateusuarios(req, res) {
+      const groupId = req.params.id;
+      const updatedData = req.body;
+  
+      try {
+        const usuarios = await models.grupos_permissoes.findByPk(groupId);
+        if (!usuarios) {
+          return res.status(404).json({ message: "Grupo de permissões não encontrado." });
+        }
+        
+        await usuarios.update(updatedData);
+  
+        return res.status(200).json({ message: "Grupo de permissões atualizado com sucesso." });
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
+  
+    static async insertusuarios(req, res) {
+      const newusuarios = req.body;
+  
+      try {
+        const createdusuarios = await models.grupos_permissoes.create(newusuarios);
+  
+        return res.status(201).json(createdusuarios);
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    }
 }
 
 module.exports = usuariosController;
