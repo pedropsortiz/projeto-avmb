@@ -38,7 +38,7 @@ class usuariosController {
       try {
         const usuarios = await models.usuarios.findByPk(groupId);
         if (!usuarios) {
-          return res.status(404).json({ message: "Erro 4040. Requisição não encontrada" });
+          return res.status(404).json({ message: "Erro 404. Requisição não encontrada" });
         }
         
         await usuarios.update(updatedData);

@@ -161,10 +161,11 @@ const generateIndexFile = () => {
     const routesPath = path.join('./backend/routes');
     const routeFiles = fs.readdirSync(routesPath).filter(file => file.endsWith('.js') && file !== 'index.js');
   
-    let indexContent = 'const bodyParser = require("body-parser");\n';
+    let indexContent = 'const bodyParser = require("body-parser"); const cors = require(\'cors\')\n';
   
     indexContent += requireLine;
     indexContent += 'module.exports = (app) => {\n';
+    indexContent += '  app.use(cors());\n';
     indexContent += '  app.use(bodyParser.json());\n';
     indexContent += useLine;
     indexContent += '};\n';
