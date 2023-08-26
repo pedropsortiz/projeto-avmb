@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "usuario_vermelho",
+    "password": "asfg12@3",
+    "database": "VERMELHO",
+    "host": "172.27.32.199",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "usuario_vermelho",
+    "password": "asfg12@3",
+    "database": "VERMELHO",
+    "host": "172.27.32.199",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "usuario_vermelho",
+    "password": "asfg12@3",
+    "database": "VERMELHO",
+    "host": "172.27.32.199",
+    "dialect": "postgres"
+  }
+}
