@@ -1,54 +1,27 @@
 
-const Clientes = require('../models/Clientes.js');
+const Sequelize = require('sequelize');
 
-const getAllClientes = async (req, res) => {
+// Configurar a conexão com o banco de dados
+const sequelize = new Sequelize('VERMELHO', 'usuario_vermelho', 'asfg12@3', {
+  host: '172.27.32.199',
+  dialect: 'postgres', // Substitua pelo dialeto do seu banco de dados
+});
+
+
+var initModels = require("../models/init-models.js");
+
+var models = initModels(sequelize)
+
+class PessoaController {
+  static async pegaTodasAsPessoas(req, res) {
     try {
-        const clientes = await Clientes.findAll({});
-        res.json(clientes);
+     
+      const todasAsPessoas = await models.pedidos.findAll({where: {id_cliente: 2}});
+      return res.status(200).json(todasAsPessoas);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erro interno" });
+      return res.status(500).json(error.message);
     }
+  }
 }
 
-const getClientesById = async (req, res) => {
-    try {
-        const clientes = await Clientes.findByPk(req.params.id);
-        res.json(clientes);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: error });
-    }
-}
-
-const createClientes = async (req, res) => {
-    try {
-        const newClientes = await Clientes.create(req.body);
-        res.json(newClientes);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erro ao criar clientes" });
-    }
-}
-
-const updateClientes = async (req, res) => {
-    try {
-        const clientes = await Clientes.findByPk(req.params.id);
-        if (!clientes) {
-            return res.status(404).json({ message: "clientes não encontrado" });
-        }
-        
-        await clientes.update(req.body);
-        res.json({ message: "clientes atualizado com sucesso" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Erro ao atualizar clientes" });
-    }
-}
-
-module.exports = {
-    getAllClientes,
-    getClientesById,
-    createClientes,
-    updateClientes
-}
+module.exports = PessoaController;
